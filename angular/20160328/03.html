@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head>
+	<title></title>
+</head>
+<body ng-controller='StudentListController'>
+	<style type="text/css">
+		.clicked{color: #eee;text-decoration:line-through;}
+	</style>
+	<label>
+		<input type="text" ng-model='text'>
+		<input type='button' ng-click='insert()' value="add">
+	</label>
+	<table ng-show='states'>
+		<tr>
+			<td>index</td>
+			<td>name</td>
+			<td>id</td>
+		</tr>
+		<tr ng-repeat='student in students' ng-class='{clicked:student.done}' ng-click='done($index)'>
+			<td>{{$index}}</td>
+			<td>{{student.name}}</td>
+			<td>{{student.id}}</td>
+		</tr>
+	</table>
+	<input type="button" value="Toggle" ng-click='dotoggle()'>
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript">
+		var myAppMoudle = angular.module('todoApp', []);
+		myAppMoudle.controller('StudentListController',function($scope){
+			var students = [{name:'Tom',id:'1'},
+			 				{name:'Jone',id:'2',done:false},
+			 				{name:'Mary','id':'3',done:false}];
+			$scope.students = students;
+			$scope.insert = function(){
+				var text = $scope.text;
+				if(text){
+					//$scope.students.splice(students.length,0,{name:text,id:students.length+1});
+					$scope.students.push({name:text,id:students.length+1,done:false});
+				}
+				$scope.text = '';				
+			}
+			$scope.states = true;
+			$scope.dotoggle = function(){
+				$scope.states = !$scope.states;
+			}
+			$scope.done = function(row){
+				$scope.students[row].done = !$scope.students[row].done;
+			}
+
+	  	});
+
+	  	//ng-model 指令把输入域的值绑定到应用程序变量 name。(双向绑定)
+		//ng-bind 指令把应用程序变量 name 绑定到某个段落的 innerHTML。（单向）
+	</script>
+</body>
+</html>

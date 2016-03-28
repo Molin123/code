@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head>
+	<title></title>
+</head>
+<body>
+	<form ng-submit='requestFunding()' ng-controller='StartUpController'>
+		Starting: <input ng-change='computeNeeded()' ng-model='funding.startingEstimate'>
+		Recommendation: {{funding.needed}}
+		<input type="submit" value="Fund my startup">
+		<input type='button' value="reset" ng-click='reset()'>
+	</form>
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript">
+		var myAppMoudle = angular.module('todoApp', []);
+		myAppMoudle.controller('StartUpController',function($scope){
+	  		$scope.funding = {startingEstimate:0};
+	  		computeNeeded = function(){
+	  			$scope.funding.needed = $scope.funding.startingEstimate*10;
+	  		}
+	  		$scope.$watch('funding.startingEstimate',computeNeeded);
+	  		$scope.requestFunding = function(){
+	  			window.alert('The Recommendation is ' + $scope.funding.needed + '.');
+	  		}
+	  		$scope.reset = function(){
+	  			$scope.funding.startingEstimate = 0;
+	  		}
+	  		
+	  	});
+	</script>
+</body>
+</html>
