@@ -4,16 +4,15 @@
 	<title></title>
 </head>
 <body ng-controller='TextController'>
-	<p>{{someText}}</p>
+	<p ng-bind='message.someText'></p>
 	<script type="text/javascript" src="js/angular.js"></script>
 	<script type="text/javascript">
-	angular.module('todoApp', [])
-  		.controller('TextController',function($scope){
-  			$scope.someText = '123';
-  	});
-		/*function TextController($scope){
-			$scope.someText = '123';
-		}*/
+		var myAppMoudle = angular.module('todoApp', []);
+		myAppMoudle.controller('TextController',function($scope){
+			var message = {};
+			message.someText = 'abc';
+	  		$scope.message = message;
+	  	});
 	</script>
 </body>
 </html>
