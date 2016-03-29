@@ -1,18 +1,4 @@
 var aMailServices = angular.module('AMail',['ngRoute']);
-/*function emailRouteConfig($routeProvider){
-	$routeProvider.
-	when('/',{
-		controller:ListController,
-		templateUrl:'list.html'
-	}).
-	when('/view/:id',{
-		controller:DetailController,
-		templateUrl:'detail.html'
-	}).
-	otherwise({
-		redirectTo:'/'
-	});
-}*/
 aMailServices.controller('MainController', function($scope, $route, $routeParams, $location) {
      $scope.$route = $route;
      $scope.$location = $location;

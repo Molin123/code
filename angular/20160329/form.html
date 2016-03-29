@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Sign Up</h1>
+	<form name="addUserForm" ng-controller="FormController">
+		<div ng-show='message'>{{message}}</div>
+		<div>First name:<input type="text" ng-model='user.first' required></div>
+		<div>Last name:<input type="text" ng-model='user.last' required></div>
+		<div>Email:<input type="email" ng-model='user.email' required></div></div>
+		<div>Age:<input type="number" ng-model='user.age' ng-maxlength="3" ng-min="1"></div>
+		<div><input type="submit" value="submit" ng-click='adduser()' ng-disabled='!addUserForm.$valid'></div>
+	</form>
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript">
+		var  myAppMoudle = angular.module('app',[]);
+		myAppMoudle.controller('FormController',function($scope){
+			$scope.message = '';
+			$scope.adduser = function(){
+				$scope.message = 'Thanks,' + $scope.user.first;
+			}
+		});
+	</script>
+</body>
+</html>
