@@ -22,7 +22,7 @@ aMailServices.config(function($routeProvider){
 	$routeProvider.
 	when('/',{
 		controller:ListController,
-		templateUrl:'../list.html'
+		templateUrl:'list.html'
 	}).
 	when('/view/:id',{
 		controller:DetailController,
