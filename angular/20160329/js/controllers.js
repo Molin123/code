@@ -51,5 +51,5 @@ function ListController($scope){
 	$scope.messages = messages;
 }
 function DetailController($scope,$routeParams){
-	$scope.messages = messages[$routeParams.id];
+	$scope.message = messages[$routeParams.id];
 }
