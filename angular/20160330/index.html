@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<title></title>
+</head>
+<body>
+	<hello></hello>
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript">
+		var appModule = angular.module('app',[]);
+		//方法一
+		/*appModule.directive('hello',function(){
+			return {
+				restrice: 'E',
+				template: '<div>Hi there</div>',
+				replace: true
+			}
+		});*/
+		//方法二
+		appModule.directive('hello',function(){
+			return {
+				restrice: 'E',
+				template: 'hello.html',
+				replace: true
+			}
+		});
+	</script>
+</body>
+</html>

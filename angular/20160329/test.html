@@ -20,7 +20,7 @@
 		<li>4</li>
 	</ul>
 	<script type="text/javascript">
-		var x=1,y=z=0;
+		/*var x=1,y=z=0;
 		function add(n){
 		return n=n+1;
 		}
@@ -31,7 +31,75 @@
 		z=add(x);
 		console.log(x);
 		console.log(y);
-		console.log(z);
+		console.log(z);*/
+		/*window.count = 3;
+		var User = {
+		  count: 1,
+		  getCount: function() {
+		    return this.count;
+		  }
+		}; 
+		console.log(User.getCount());  
+		var func = User.getCount;
+		console.log(func()); 
+		console.log(typeof null);
+		console.log(typeof undefined);
+		var count2 = null;
+		console.log(count2);
+		//console.log(count2 instanceof Object);
+		//console.log(null == undefined);
+		console.log(null+0);
+		console.log(undefined+0);*/
+		/*function getNum(){
+			return Math.floor(Math.random()*91+10);
+		}
+		function compare(val1,val2){
+			if(val1 < val2){
+				return -1
+			}else if(val1 >val2){
+				return 1;
+			}else{
+				return 0;
+			}
+		}
+		var res = [];
+		for (i=0;i<91;i++){
+			b = getNum();
+			while(res.indexOf(b) > -1){
+				b = getNum();
+			}
+			res.push(b);
+		}
+		console.log(res);
+		res.sort(compare);
+		console.log(res);*/
+		function getNum(){
+			return Math.floor(Math.random()*10);
+		}
+		var res = [];
+		var res2 = [];
+		for (i=0;i<91;i++){
+			b = getNum();
+			res.push(b);
+		}
+		console.log(res);
+		for (i=0;i<91;i++){
+			if(res2.indexOf(res[i]) > -1){
+			}else{
+				res2.push(res[i]);
+			}
+		}
+		console.log(res2);
+		/*var i = 10;
+		function timer (times){
+			if (i == 0) { 
+	            clearInterval(intervalid); 
+	        } 
+	        console.log(i);
+	        i--; 
+		}
+		intervalid = setInterval("timer(10)", 1000);*/
+
 	</script>
 </body>
 </html>
