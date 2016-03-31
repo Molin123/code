@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<title></title>
+</head>
+<body>
+	<style type="text/css">
+		.expander{
+			border:2px solid black;
+		}
+		.expander > .title{
+			background-color: black;
+			color: blue;
+			padding: .1em .3em;
+			cursor: pointer;
+		}
+		.expander > .body{
+			padding: .1em .3em;
+		}
+	</style>
+	<div ng-controller="SomeController">
+		<accordion>
+			<expander class="expander" ng-repeat='expander in expanders' expander-title='expander.title'>
+				{{expander.text}}
+			</expander>
+		</accordion>		
+	</div>
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript">
+		var appModule = angular.module('app',[]);
+		appModule.directive('accordion',function () {
+			return {
+				restrict: 'EA',
+				replace: true,
+				transclude: true,
+				template: '<div ng-transclude></div>' ,
+				controller: function(){
+					var expanders = [];
+					this.gotOpened = function (selectedExpander){
+						angular.forEach(expanders, function(expander){
+							if (selectedExpander != expander) {
+								expander.showMe = false;
+							}						
+						})
+					}
+					this.addExpander = function(expander){
+						expanders.push(expander);
+					}
+				}
+			}
+		});
+		appModule.directive('expander',function () {
+			return {
+				restrict: 'EA',//E元素A属性C样式表M注释  用来描述指令的声明风格，即他是否可以被用作元素。。。。这里如果写上C会报错
+				replace: true,//使用我们提供的模板来替换原来的元素
+				transclude: true,//把原来元素中的内容移到我们所提供的模板中
+				scope: { title:'=expanderTitle' },  //scope: { expanderTitle:'=' } 然后下面用expanderTitle引用也可以
+				require: '^?accordion',
+				template: '<div>' + 
+  							'<div class="title" ng-click="toggle()">{{title}}</div>' + 
+  							'<div class="body" ng-show="showMe" ng-transclude></div>' + 
+  							'</div>' ,
+  				link: function(scope, element, attrs, accordion1Controller){
+  					scope.showMe = false;
+  					accordion1Controller.addExpander(scope);
+  					scope.toggle = function toggle(){
+  						scope.showMe = !scope.showMe;
+  						accordion1Controller.gotOpened(scope);
+  					}
+  				}
+			}
+		});
+		appModule.controller('SomeController',function ($scope){
+			$scope.expanders = [
+				{title:'title1',
+				 text:'text1'},
+				{title:'title2',
+				 text:'text2'},
+				{title:'title3',
+				 text:'text3'},
+			]
+		});
+	</script>
+</body>
+</html>

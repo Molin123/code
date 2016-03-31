@@ -17,6 +17,22 @@
 			}
 		});*/
 		//方法二
+		/*appModule.directive('hello',function(){
+			return {
+				restrice: 'E',
+				templateUrl: 'hello.html',
+				replace: true
+			}
+		});*/
+
+		//方法三：
+		//如果你想在第一个页面中就把模板加载好，你可以吧它作为页面的一部分包含在script标签中，就像下面的那个script标签一样，其它代码和方法二一样
+
+		//方法四
+		//使用$http或其它机制来加载模板，加载完成之后再把模板的内容设置给一个名为$templateCache的angular对象。我们希望在指令运行之前模板已经位于缓存中了，所以需要利用module上的run函数来调用模板。 
+		appModule.run(function($templateCache){
+			$templateCache.put('hello.html', '<div>Hi there3</div>');
+		});
 		appModule.directive('hello',function(){
 			return {
 				restrice: 'E',
