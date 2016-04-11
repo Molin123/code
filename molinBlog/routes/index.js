@@ -8,5 +8,3 @@ router.get('/', function(req, res, next) {
 
 module.exports = router;
 
-
-router.listen(3000);
