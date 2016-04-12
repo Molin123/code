@@ -11,16 +11,16 @@ var users = require('./routes/users');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));//设置views变量，试图存放的目录
+app.set('view engine', 'ejs');//网页模板引擎
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());//解析cookie的工具
+app.use(express.static(path.join(__dirname, 'public')));//设置静态文件目录
 
 app.use('/', routes);
 app.use('/users', users);
@@ -33,7 +33,7 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-
+//console.log(app.get('env'),process.env.NODE_ENV)
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
